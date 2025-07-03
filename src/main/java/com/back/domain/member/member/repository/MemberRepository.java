@@ -3,10 +3,8 @@ package com.back.domain.member.member.repository;
 import com.back.domain.member.member.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface MemberRepository extends JpaRepository<Member, Integer> {
+import java.util.Optional;
 
-    // Custom query methods can be defined here if needed
-    // For example:
-    // Optional<Member> findByEmail(String email);
-    // List<Member> findByLastName(String lastName);
+public interface MemberRepository extends JpaRepository<Member, Integer> {
+    Optional<Member> findByUsername(String username);
 }
