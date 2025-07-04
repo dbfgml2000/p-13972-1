@@ -77,7 +77,7 @@ public class ApiV1PostController {
     @Operation(summary = "작성")
     public RsData<PostDto> write(
             @Valid @RequestBody PostWriteReqBody reqBody,
-            @NotBlank @Size(min = 2, max = 30) String apiKey
+            @NotBlank @Size(min = 30, max = 50) String apiKey
     ) {
         Member actor = memberService.findByApiKey(apiKey).orElseThrow(() -> new ServiceException("401-1", "존재하지 않는 apiKey입니다."));
 

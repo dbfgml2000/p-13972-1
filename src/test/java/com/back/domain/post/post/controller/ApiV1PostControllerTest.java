@@ -37,9 +37,12 @@ public class ApiV1PostControllerTest {
     @Test
     @DisplayName("글 쓰기")
     void t1() throws Exception {
+        Member actor = memberService.findByUsername("user1").get();
+        String apiKey = actor.getApiKey();
+
         ResultActions resultActions = mvc
                 .perform(
-                        post("/api/v1/posts")
+                        post("/api/v1/posts?apiKey="+apiKey)
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("""
                                         {
@@ -70,12 +73,9 @@ public class ApiV1PostControllerTest {
     @Test
     @DisplayName("글 쓰기, without title")
     void t7() throws Exception {
-        Member actor = memberService.findByUsername("user1").get();
-        String apiKey = actor.getApiKey();
-
         ResultActions resultActions = mvc
                 .perform(
-                        post("/api/v1/posts?apiKey="+apiKey)
+                        post("/api/v1/posts")
                                 .contentType(MediaType.APPLICATION_JSON)
                                 .content("""
                                         {
